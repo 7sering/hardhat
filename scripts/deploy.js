@@ -9,10 +9,21 @@ async function main() {
 
   const lockedAmount = hre.ethers.parseEther("1");
 
-  console.log(currentTimeStampInSeconds);
-  console.log(ONE_YEARS_IN_SECONDS);
-  console.log(unlockedTime);
-  console.log(lockedAmount);
+  //   console.log(currentTimeStampInSeconds);
+  //   console.log(ONE_YEARS_IN_SECONDS);
+  //   console.log(unlockedTime);
+  //   console.log(lockedAmount);
+
+  // const Lock = await ethers.getContractFactory("Lock");
+  const MyTest = await ethers.getContractFactory("MyTest");
+  const myTest = await hre.ethers.deployContract("MyTest", [unlockedTime], {
+    value: lockedAmount,
+  });
+
+  await myTest.waitForDeployment();
+
+  console.log(`Lock with ${ethers.formatEther(lockedAmount)}ETH and unlock timestamp ${unlockedTime}deployed to ${myTest.target}`
+  );
 }
 
 main().catch((error) => {
