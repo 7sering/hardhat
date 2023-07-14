@@ -22,8 +22,13 @@ async function main() {
 
   await myTest.waitForDeployment();
 
-  console.log(`Lock with ${ethers.formatEther(lockedAmount)}ETH and unlock timestamp ${unlockedTime}deployed to ${myTest.target}`
+  console.log(
+    `Lock with ${ethers.formatEther(
+      lockedAmount
+    )}ETH and unlock timestamp ${unlockedTime} deployed to ${myTest.target}`
   );
+
+  console.log(myTest);
 }
 
 main().catch((error) => {
